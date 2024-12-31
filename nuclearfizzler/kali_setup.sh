@@ -7,6 +7,9 @@ wget -P ~/ https://raw.githubusercontent.com/nationalcptc-teamtools/University-o
 
 wget -P ~/ https://raw.githubusercontent.com/61106960/adPEAS/refs/heads/main/adPEAS-Light.ps1
 
+# hehehaha i love open source
+sudo wget -O /usr/share/doc/python3-impacket/examples/GetNPUsers.py https://raw.githubusercontent.com/NuclearFizzler/impacket/refs/heads/getnpuser-file-output/examples/GetNPUsers.py
+
 # Setup neo4j for bloodhound
 sudo neo4j console 1>/dev/null &
 sleep 5
