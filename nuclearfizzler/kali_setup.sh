@@ -1,6 +1,6 @@
 #!/bin/bash
 sudo apt update
-sudo apt -y install enum4linux-ng netexec impacket impacket-scripts tmux flameshot xclip peass
+sudo apt -y install enum4linux-ng netexec python3-impacket impacket-scripts tmux flameshot xclip peass
 
 # Download github resources
 wget -P ~/ https://raw.githubusercontent.com/nationalcptc-teamtools/University-of-California-Davis/refs/heads/main/nuclearfizzler/.tmux.conf
