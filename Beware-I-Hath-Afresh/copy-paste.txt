@@ -1,0 +1,33 @@
+Connection
+	 nmcli connection edit <Name of your HTB VPN> #That will put you into the Network Manager CLI. In there type:
+		#Use the following settings
+			set ipv4.never-default true
+			set ipv6.never-default true
+			save
+			quit 
+	
+	echo <IP> <Site Name> | sudo tee -a /etc/hosts
+Recon
+	Target: 10.144.171.194
+	Target Domain: 
+	nmap -sC -sV 
+	enum4linux <ip> # For windows port 139,445
+
+Pre-shell
+	nc -lvnp 4444
+	
+Better-Shell
+	python3 -c 'import pty;pty.spawn("/bin/bash")'
+	
+	script /dev/null -c bash
+	ctrl-z
+	stty raw -echo; fg
+	Enter twice
+
+Post-shell recon
+	env
+
+Privilege Escalation
+	python3 -m http.server 8081
+	
+Report Refs
