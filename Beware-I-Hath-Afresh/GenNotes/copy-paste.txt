@@ -25,7 +25,14 @@ Better-Shell
 	Enter twice
 
 Post-shell recon
-	env
+	env #environment
+	netstat -an #Network connections 
+	ifconfig #Nework config 
+	ipconfig /All #Windows
+	uname -a #OS info
+	ver #Windows os info
+	ps -ef #running process
+	tasklist #running process windows
 
 Privilege Escalation
 	python3 -m http.server 8081

