@@ -76,7 +76,7 @@ Try:
     		Look for response header: Access-Control-Allow-Credentials, append origin into your header, and does Access-Control-Allow-Origin show up?
     		Try screwing with the origin: normalsite.com --> hacker.normalsite.com or normalsite.com.hacker.com
     		Try inserting: Origin: null
-    		Try subdomain with XSS vuln (subdomain may use http instead of https):
+    		Try subdomain or internal website with XSS vuln (subdomain may use http instead of https):
     			Origin: https://subdomain.vul-site.com
     			Origin: http://vuln-site.com
     put OPTION as request type for enumeration
