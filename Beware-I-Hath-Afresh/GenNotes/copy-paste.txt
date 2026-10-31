@@ -8,10 +8,10 @@ Connection
 	
 	echo <IP> <Site Name> | sudo tee -a /etc/hosts
 Recon
-	Target: 10.144.171.194
-	Target Domain: 
-	nmap -sC -sV 
-	enum4linux <ip> # For windows port 139,445
+	TARGET=10.129.183.108
+	TARGET_DOMAIN=
+	nmap -sC -sV $TARGET
+	enum4linux $TARGET # For windows port 139,445
 
 Pre-shell
 	nc -lvnp 4444
